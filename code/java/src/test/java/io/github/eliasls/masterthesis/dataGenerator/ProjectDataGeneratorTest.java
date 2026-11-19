@@ -14,13 +14,13 @@ import org.junit.jupiter.api.io.TempDir;
 
 public class ProjectDataGeneratorTest {
 
-  @Test @DisplayName("Interest score stays between 1 and 5, and follows the configured distribution")
-  public void testInterestScoreDistribution() {
+  @Test @DisplayName("Popularity score stays between 1 and 5, and follows the configured distribution")
+  public void testPopularityScoreDistribution() {
     ProjectDataGenerator generator = new ProjectDataGenerator(new Random(1));
     int[] counts = new int[6];
     int n = 100_000;
     for (int i = 0; i < n; i++) {
-      int score = generator.drawInterestScore();
+      int score = generator.drawPopularityScore();
       assertTrue(score >= 1 && score <= 5, "score " + score);
       counts[score]++;
     }
@@ -58,7 +58,7 @@ public class ProjectDataGeneratorTest {
     List<int[]> projects = List.of(new int[] { 0, 3, 5 }, new int[] { 1, 3, 1 });
     ProjectDataGenerator.writeCsv(projects, file);
     assertEquals(
-        List.of("Project ID,Supervisor ID,Interest Score", "0,3,5", "1,3,1"),
+        List.of("Project ID,Supervisor ID,Popularity Score", "0,3,5", "1,3,1"),
         Files.readAllLines(file));
   }
 

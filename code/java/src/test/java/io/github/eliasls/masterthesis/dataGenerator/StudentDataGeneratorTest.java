@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 public class StudentDataGeneratorTest {
 
-  // 20 projects per interest score (1-5), 100 projects total.
+  // 20 projects per popularity score (1-5), 100 projects total.
   private static List<int[]> buildProjectPool() {
     List<int[]> projects = new ArrayList<>();
     int projectId = 0;
@@ -29,7 +29,7 @@ public class StudentDataGeneratorTest {
     return projects;
   }
 
-  @Test @DisplayName("Choices are 5 distinct projects, and higher interest scores are picked more often")
+  @Test @DisplayName("Choices are 5 distinct projects, and higher popularity scores are picked more often")
   public void testDrawChoicesDistribution() {
     List<int[]> projects = buildProjectPool();
     StudentDataGenerator generator = new StudentDataGenerator(new Random(1));
