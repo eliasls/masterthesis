@@ -1,0 +1,13 @@
+# Maven
+target/
+
+# Generated data
+
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
