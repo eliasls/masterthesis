@@ -29,7 +29,7 @@ public class ProjectDataGenerator {
     this.rng = rng;
   }
 
-  int drawInterestScore() {
+  int drawPopularityScore() {
     double draw = rng.nextDouble();
     for (int i = 0; i < SCORES.length; i++) {
       if (draw < CUMULATIVE_PROBABILITIES[i]) {
@@ -39,7 +39,7 @@ public class ProjectDataGenerator {
     return SCORES[SCORES.length - 1];
   }
 
-  // supervisorCapacities rows: {supervisorId, capacity}. Returns rows: {projectId, supervisorId, interestScore}.
+  // supervisorCapacities rows: {supervisorId, capacity}. Returns rows: {projectId, supervisorId, popularityScore}.
   public List<int[]> generate(List<int[]> supervisorCapacities) {
     List<int[]> projects = new ArrayList<>();
     int projectId = 0;
@@ -47,7 +47,7 @@ public class ProjectDataGenerator {
       int supervisorId = supervisor[0];
       int capacity = supervisor[1];
       for (int i = 0; i < capacity; i++) {
-        projects.add(new int[] { projectId++, supervisorId, drawInterestScore() });
+        projects.add(new int[] { projectId++, supervisorId, drawPopularityScore() });
       }
     }
     return projects;
@@ -65,7 +65,7 @@ public class ProjectDataGenerator {
 
   static void writeCsv(List<int[]> projects, Path file) throws IOException {
     List<String> lines = new ArrayList<>();
-    lines.add("Project ID,Supervisor ID,Interest Score");
+    lines.add("Project ID,Supervisor ID,Popularity Score");
     for (int[] project : projects) {
       lines.add(project[0] + "," + project[1] + "," + project[2]);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 // Each students_N.csv links to the matching projects_N.csv: student count is STUDENT_RATIO of
-// the project count, and choices are drawn weighted by each project's interest score.
+// the project count, and choices are drawn weighted by each project's popularity score.
 public class StudentDataGenerator {
 
   private static final int N_FILES = 20;
@@ -49,7 +49,7 @@ public class StudentDataGenerator {
     return choices;
   }
 
-  // projects rows: {projectId, interestScore}. Returns rows: {studentId, choice1, ..., choiceN}.
+  // projects rows: {projectId, popularityScore}. Returns rows: {studentId, choice1, ..., choiceN}.
   public List<int[]> generate(List<int[]> projects) {
     int nStudents = (int) Math.round(STUDENT_RATIO * projects.size());
     List<int[]> students = new ArrayList<>();
